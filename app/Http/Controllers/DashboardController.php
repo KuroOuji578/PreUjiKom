@@ -9,7 +9,12 @@ class DashboardController extends Controller
 {
     /**
      * Display a listing of the resource.
-     */
+     */ public $customer;
+    // membuat instance dari model kategori
+    public function __construct()
+    {
+        $this->customer = new Customer();
+    }
     public function index()
     {
         //
@@ -28,7 +33,42 @@ class DashboardController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //validasi inputan user
+        $rules = [
+            'nama_customer' => 'required|min:3|max:50',
+            'alamat' => 'required',
+            'kota' => 'required',
+            'email' => 'required',
+            'no_hp' => 'required',
+            'perusahaan' => "required"
+        ];
+
+        $messages = [
+            'required' => ":attribute gak boleh kosong",
+            'min' => ":attribute kurang banyak",
+            'max' => ":attribute kebanyakan / ukuran file terlalu besar",
+
+        ];
+
+        $this->validate($request, $rules, $messages);
+
+        //meniyimpan inputan user ke db
+        $this->customer->nama_customer = $request->nama_customer;
+        $this->customer->alamat = $request->alamat;
+        $this->customer->kota = $request->kota;
+        $this->customer->email = $request->email;
+        $this->customer->no_hp = $request->no_hp;
+        $this->customer->perusahaan = $request->perusahaan;
+
+
+
+        //simpan file gambar ke direktori upload yang ada didalam public
+
+        // simpan data menggunakan method save()
+        $this->customer->save();
+
+        // redirect halaman serta kirimkan pesan berhasil
+        return redirect()->route('dash')->with('status', 'Data customer berhasil ditambahkan');
     }
 
     /**
@@ -62,6 +102,6 @@ class DashboardController extends Controller
     {
         $destroy = Customer::findOrFail($id);
         $destroy->delete();
-        return redirect()->route('barang')->with('status', 'Data barang berhasil dihapus');
+        return redirect()->route('dash')->with('status', 'Data cutomer berhasil dihapus');
     }
 }

@@ -3,6 +3,7 @@
 use App\Http\Controllers\DashboardController;
 use App\Models\Customer;
 use Illuminate\Support\Facades\Route;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,8 +21,8 @@ Route::get('/', function () {
     $data = Customer::all();
 
     return view('dashboard', compact('data'));
-});
+})->name('dash');
 
 Route::get('/create', [DashboardController::class, 'create'])->name('customer.create');
-
+Route::post('/store', [DashboardController::class, 'store'])->name('customer.store');
 Route::get('/destroy/{id}', [DashboardController::class, 'destroy'])->name('customer.destroy');
