@@ -5,14 +5,23 @@
         <div class="col-12 d-flex no-block align-items-center">
             <h4 class="page-title">Dashboard</h4>
         </div>
-        <div class="mt-3 ml-2">
-            <a href="{{ route('customer.create') }}">
-                <button class="btn btn-success">Register</button>
-            </a>
-        </div> 
+    </div>
+    <div class="row">
+        <div class="col-6 m-t-15">
+            <div class="bg-dark p-10 text-white text-center">
+               <i class="fa fa-cart-plus font-16"></i>
+               <h5 class="m-t-5">{{$count}}</h5>
+               <small class="font-light">Total Customer</small>
+            </div>
+        </div>
     </div>
 </div>
 <div class="row mt-3">
+    <div class="mt-3 ml-2 mb-3">
+        <a href="{{ route('customer.create') }}">
+            <button class="btn btn-success">Register</button>
+        </a>
+    </div> 
     <div class="col-12">
         <div class="card">
             <div class="card-body">

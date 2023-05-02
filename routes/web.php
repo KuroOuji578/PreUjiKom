@@ -18,9 +18,11 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 Route::get('/', function () {
 
-    $data = Customer::all();
 
-    return view('dashboard', compact('data'));
+    $data = Customer::all();
+    $count = count($data);
+
+    return view('dashboard', compact('data', 'count'));
 })->name('dash');
 
 Route::get('/create', [DashboardController::class, 'create'])->name('customer.create');
