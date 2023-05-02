@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Models\Customer;
 use Illuminate\Support\Facades\Route;
 
@@ -20,3 +21,7 @@ Route::get('/', function () {
 
     return view('dashboard', compact('data'));
 });
+
+Route::get('/create', [DashboardController::class, 'create'])->name('customer.create');
+
+Route::get('/destroy/{id}', [DashboardController::class, 'destroy'])->name('customer.destroy');

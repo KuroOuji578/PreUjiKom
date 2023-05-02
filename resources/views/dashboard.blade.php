@@ -6,8 +6,8 @@
             <h4 class="page-title">Dashboard</h4>
         </div>
         <div class="mt-3 ml-2">
-            <a href="">
-                <button class="btn btn-warning">Register</button>
+            <a href="{{ route('customer.create') }}">
+                <button class="btn btn-success">Register</button>
             </a>
         </div> 
     </div>
@@ -28,6 +28,7 @@
                       <th scope="col">Email</th>
                       <th scope="col">No HP</th>
                       <th scope="col">Perusahaan</th>
+                      <th></th>
                     </tr>
                   </thead>
                   <tbody>
@@ -43,6 +44,14 @@
                       <td>{{$item->email}}</td>
                       <td>{{$item->no_hp}}</td>
                       <td>{{$item->perusahaan}}</td>
+                      <td>
+                        <a href="">
+                            <button class="btn btn-warning">Edit</button>
+                        </a>
+                        <a href="{{ route('customer.destroy', $item->id) }}">
+                            <button class="btn btn-danger">Hapus</button>
+                        </a>
+                      </td>
                     </tr>
                     @php
                          $no++;
